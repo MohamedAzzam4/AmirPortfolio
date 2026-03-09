@@ -1,0 +1,190 @@
+/* ═══════════════════════════════════════════════════════
+   RTL OVERRIDES — Arabic Version
+   ═══════════════════════════════════════════════════════ */
+
+/* Typography — switch to Arabic fonts */
+:root {
+    --font-heading: 'Cairo', 'Outfit', sans-serif;
+    --font-body: 'Tajawal', 'Inter', sans-serif;
+}
+
+/* General RTL direction fix */
+body {
+    direction: rtl;
+    text-align: right;
+}
+
+/* Navigation */
+.nav-container {
+    flex-direction: row-reverse;
+}
+
+.nav-links {
+    flex-direction: row-reverse;
+}
+
+.nav-link::after {
+    left: auto;
+    right: 0;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-direction: row-reverse;
+}
+
+/* Language switcher */
+.lang-switcher {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    padding: 0.35rem 0.75rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-pill);
+    transition: var(--transition-base);
+    letter-spacing: 0.05em;
+}
+
+.lang-switcher:hover {
+    color: var(--text-primary);
+    border-color: var(--purple);
+    box-shadow: var(--glow-purple);
+}
+
+/* Hero badge icon */
+.hero-badge {
+    flex-direction: row-reverse;
+}
+
+/* Buttons icon order */
+.btn {
+    flex-direction: row-reverse;
+}
+
+/* Hero stats */
+.hero-stats-mini {
+    direction: rtl;
+}
+
+/* Section headers */
+.section-header {
+    text-align: center;
+}
+
+.section-tag {
+    flex-direction: row-reverse;
+}
+
+/* Service cards */
+.service-card {
+    text-align: right;
+}
+
+.featured-badge {
+    right: auto;
+    left: 1rem;
+}
+
+/* Video features */
+.video-features li {
+    flex-direction: row-reverse;
+}
+
+/* Marketing features */
+.marketing-card-header {
+    flex-direction: row-reverse;
+}
+
+.marketing-feature {
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+/* Portfolio overlay */
+.portfolio-overlay {
+    text-align: right;
+}
+
+/* About section — swap image/text column order */
+.about-grid {
+    direction: rtl;
+}
+
+.about-content .section-tag {
+    justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+    .about-content .section-tag {
+        justify-content: center;
+    }
+}
+
+.about-image-decoration {
+    right: auto;
+    left: -12px;
+}
+
+/* Contact info */
+.contact-info-card {
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+.contact-socials {
+    flex-direction: row-reverse;
+}
+
+/* Form */
+.contact-form {
+    text-align: right;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    text-align: right;
+}
+
+.form-group select {
+    background-position: left 1rem center;
+    padding-left: 2.5rem;
+    padding-right: 1rem;
+}
+
+/* Footer */
+.footer-grid {
+    direction: rtl;
+}
+
+.footer-links {
+    text-align: right;
+}
+
+.footer-links a:hover {
+    padding-left: 0;
+    padding-right: 4px;
+}
+
+/* Mobile nav — keep centered */
+@media (max-width: 767px) {
+    .nav-links {
+        text-align: center;
+        flex-direction: column;
+    }
+
+    .nav-container {
+        flex-direction: row;
+    }
+
+    .hamburger {
+        order: -1;
+    }
+
+    .nav-logo {
+        order: 1;
+    }
+}
