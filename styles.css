@@ -1204,6 +1204,14 @@ h6 {
     font-size: 5rem;
     position: relative;
     z-index: 1;
+    overflow: hidden;
+}
+
+.about-image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
 }
 
 .about-image-decoration {
