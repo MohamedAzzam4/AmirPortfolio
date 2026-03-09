@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amir — Creative Graphic Designer & Digital Strategist</title>
+    <meta name="description"
+        content="Portfolio of Amir — expert graphic designer, video editor, and digital marketing strategist. Offering logo design, branding, social media content, video production, and sponsored ad management." />
+    <meta name="keywords"
+        content="graphic design, logo design, branding, video editing, digital marketing, social media ads, portfolio" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+    <!-- ═══════════════════ NAVIGATION ═══════════════════ -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="nav-logo">
+                <span class="logo-icon"><i class="ph ph-diamond"></i></span>
+                <span class="logo-text">Amir<span class="accent">.</span></span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <a href="#contact" class="btn btn-primary nav-cta">Let's Talk</a>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ═══════════════════ HERO ═══════════════════ -->
+    <section class="hero" id="hero">
+        <!-- Topographic background -->
+        <div class="hero-bg">
+            <svg class="topo-lines" viewBox="0 0 1440 800" preserveAspectRatio="none">
+                <path d="M0,400 Q360,300 720,400 T1440,400" fill="none" stroke="rgba(139,92,246,0.08)"
+                    stroke-width="1.5" />
+                <path d="M0,350 Q360,250 720,350 T1440,350" fill="none" stroke="rgba(139,92,246,0.06)"
+                    stroke-width="1" />
+                <path d="M0,450 Q360,350 720,450 T1440,450" fill="none" stroke="rgba(139,92,246,0.06)"
+                    stroke-width="1" />
+                <path d="M0,300 Q360,200 720,300 T1440,300" fill="none" stroke="rgba(139,92,246,0.04)"
+                    stroke-width="0.8" />
+                <path d="M0,500 Q360,400 720,500 T1440,500" fill="none" stroke="rgba(139,92,246,0.04)"
+                    stroke-width="0.8" />
+                <path d="M0,250 Q360,150 720,250 T1440,250" fill="none" stroke="rgba(168,85,247,0.03)"
+                    stroke-width="0.6" />
+                <path d="M0,550 Q360,450 720,550 T1440,550" fill="none" stroke="rgba(168,85,247,0.03)"
+                    stroke-width="0.6" />
+            </svg>
+            <div class="hero-glow hero-glow--purple"></div>
+            <div class="hero-glow hero-glow--gold"></div>
+        </div>
+
+        <div class="container hero-content">
+            <p class="hero-badge"><i class="ph ph-sparkle"></i> Creative Designer & Strategist</p>
+            <h1 class="hero-title">
+                Crafting <span class="gradient-text">Visual Stories</span><br />
+                That Elevate Your <span class="gradient-text-gold">Brand</span>
+            </h1>
+            <p class="hero-subtitle">
+                From stunning logos and social media designs to cinematic video production
+                and data-driven marketing — I bring your vision to life with precision and creativity.
+            </p>
+            <div class="hero-actions">
+                <a href="#portfolio" class="btn btn-primary btn-lg">
+                    <i class="ph ph-eye"></i> View My Work
+                </a>
+                <a href="#services" class="btn btn-ghost btn-lg">
+                    <i class="ph ph-squares-four"></i> Explore Services
+                </a>
+            </div>
+            <div class="hero-stats-mini">
+                <div class="hero-stat">
+                    <span class="hero-stat-number" data-target="150">0</span>+
+                    <span class="hero-stat-label">Projects</span>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number" data-target="80">0</span>+
+                    <span class="hero-stat-label">Clients</span>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number" data-target="5">0</span>+
+                    <span class="hero-stat-label">Years</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ DESIGN SERVICES ═══════════════════ -->
+    <section class="section services-section" id="services">
+        <div class="grid-bg"></div>
+        <div class="container">
+            <div class="section-header reveal">
+                <p class="section-tag"><i class="ph ph-paint-brush"></i> What I Do</p>
+                <h2 class="section-title">Design <span class="gradient-text">Services</span></h2>
+                <p class="section-desc">Pixel-perfect designs tailored to make your brand unforgettable.</p>
+            </div>
+
+            <div class="services-grid reveal">
+
+                <div class="service-card">
+                    <div class="service-icon"><i class="ph ph-user-circle"></i></div>
+                    <h3>Profile Design</h3>
+                    <p>Eye-catching social media profile designs that communicate your brand identity at first glance.
+                    </p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon"><i class="ph ph-book-open"></i></div>
+                    <h3>Book Cover Design</h3>
+                    <p>Captivating book covers that tell a story before a single word is read — designed to stand out on
+                        shelves and screens.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon"><i class="ph ph-crown"></i></div>
+                    <h3>Logo Design</h3>
+                    <p>Unique, memorable logos that capture the essence of your brand and leave a lasting impression.
+                    </p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon"><i class="ph ph-flag-banner"></i></div>
+                    <h3>Banner Design</h3>
+                    <p>Attention-grabbing banners for web & print that deliver your message with visual impact.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon"><i class="ph ph-instagram-logo"></i></div>
+                    <h3>Social Media Design</h3>
+                    <p>Scroll-stopping social media visuals that boost engagement and strengthen your online presence.
+                    </p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon"><i class="ph ph-newspaper-clipping"></i></div>
+                    <h3>Brochure Design</h3>
+                    <p>Professional, beautifully-laid-out brochures that communicate your offerings clearly and
+                        elegantly.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon"><i class="ph ph-briefcase"></i></div>
+                    <h3>Business Design</h3>
+                    <p>Complete business collateral — letterheads, envelopes, and stationery — for a cohesive
+                        professional look.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon"><i class="ph ph-browser"></i></div>
+                    <h3>Website UI Design</h3>
+                    <p>Modern, intuitive website interfaces that combine stunning aesthetics with seamless user
+                        experience.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon"><i class="ph ph-identification-card"></i></div>
+                    <h3>Business Card Design</h3>
+                    <p>Premium business cards that make powerful first impressions and reflect your brand's quality.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon"><i class="ph ph-scroll"></i></div>
+                    <h3>Roll Up Design</h3>
+                    <p>High-impact roll-up banner designs perfect for events, trade shows, and professional
+                        presentations.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon"><i class="ph ph-file-text"></i></div>
+                    <h3>Professional ATS CV</h3>
+                    <p>ATS-optimized CV models that pass automated screening while looking polished and professional.
+                    </p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon"><i class="ph ph-certificate"></i></div>
+                    <h3>Certificate Design</h3>
+                    <p>Elegant, official certificates with premium finishes for awards, courses, and professional
+                        achievements.</p>
+                </div>
+
+                <div class="service-card service-card--featured">
+                    <div class="service-icon"><i class="ph ph-globe"></i></div>
+                    <h3>Integrated Website + SEO</h3>
+                    <p>Fully functional, search-engine optimized websites built to attract traffic and convert visitors
+                        into customers.</p>
+                    <span class="featured-badge">Full Package</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ VIDEO SERVICES ═══════════════════ -->
+    <section class="section video-section" id="video">
+        <div class="container">
+            <div class="section-header reveal">
+                <p class="section-tag"><i class="ph ph-video-camera"></i> Motion & Film</p>
+                <h2 class="section-title">Video & <span class="gradient-text-gold">Montage</span></h2>
+                <p class="section-desc">Cinematic storytelling that captivates your audience from the first frame.</p>
+            </div>
+
+            <div class="video-grid reveal">
+
+                <div class="video-card">
+                    <div class="video-card-icon"><i class="ph ph-film-strip"></i></div>
+                    <h3>Video Editing</h3>
+                    <p>Professional post-production editing with color grading, transitions, sound design, and motion
+                        graphics that transform raw footage into polished visual stories.</p>
+                    <ul class="video-features">
+                        <li><i class="ph ph-check-circle"></i> Color Grading</li>
+                        <li><i class="ph ph-check-circle"></i> Motion Graphics</li>
+                        <li><i class="ph ph-check-circle"></i> Sound Design</li>
+                    </ul>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-card-icon"><i class="ph ph-device-mobile"></i></div>
+                    <h3>Short Reels</h3>
+                    <p>Punchy, trend-aware short-form content optimized for Instagram Reels, TikTok, and YouTube Shorts
+                        — designed to go viral and maximize engagement.</p>
+                    <ul class="video-features">
+                        <li><i class="ph ph-check-circle"></i> Trend Research</li>
+                        <li><i class="ph ph-check-circle"></i> Platform Optimized</li>
+                        <li><i class="ph ph-check-circle"></i> Captioning</li>
+                    </ul>
+                </div>
+
+                <div class="video-card video-card--highlight">
+                    <div class="video-card-icon"><i class="ph ph-camera"></i></div>
+                    <h3>Full Day of Filming</h3>
+                    <p>A complete day of professional filming — typically producing 6 to 8 polished reels. Includes
+                        planning, on-location shooting, and full post-production.</p>
+                    <ul class="video-features">
+                        <li><i class="ph ph-check-circle"></i> 6–8 Reels</li>
+                        <li><i class="ph ph-check-circle"></i> On-Location</li>
+                        <li><i class="ph ph-check-circle"></i> Full Post-Production</li>
+                    </ul>
+                    <span class="featured-badge">Best Value</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ MARKETING SERVICES ═══════════════════ -->
+    <section class="section marketing-section" id="marketing">
+        <div class="grid-bg"></div>
+        <div class="container">
+            <div class="section-header reveal">
+                <p class="section-tag"><i class="ph ph-chart-line-up"></i> Growth & Strategy</p>
+                <h2 class="section-title">Social Media <span class="gradient-text">Advertising</span> & Marketing</h2>
+                <p class="section-desc">Data-driven strategies that turn followers into loyal customers.</p>
+            </div>
+
+            <div class="marketing-grid reveal">
+
+                <div class="marketing-card">
+                    <div class="marketing-card-header">
+                        <div class="marketing-icon"><i class="ph ph-megaphone"></i></div>
+                        <h3>Sponsored Ad Management</h3>
+                    </div>
+                    <p>End-to-end management of paid social media advertisements across platforms like Meta (Facebook &
+                        Instagram), with precise audience targeting based on:</p>
+                    <div class="marketing-features">
+                        <div class="marketing-feature">
+                            <i class="ph ph-users-three"></i>
+                            <div>
+                                <strong>Demographics</strong>
+                                <span>Age, gender, language & more</span>
+                            </div>
+                        </div>
+                        <div class="marketing-feature">
+                            <i class="ph ph-map-pin"></i>
+                            <div>
+                                <strong>Location</strong>
+                                <span>City, region & geo-targeting</span>
+                            </div>
+                        </div>
+                        <div class="marketing-feature">
+                            <i class="ph ph-heart"></i>
+                            <div>
+                                <strong>Interests</strong>
+                                <span>Hobbies, pages & behaviors</span>
+                            </div>
+                        </div>
+                        <div class="marketing-feature">
+                            <i class="ph ph-target"></i>
+                            <div>
+                                <strong>Behaviors</strong>
+                                <span>Purchase patterns & device usage</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="marketing-card">
+                    <div class="marketing-card-header">
+                        <div class="marketing-icon"><i class="ph ph-strategy"></i></div>
+                        <h3>Integrated Marketing Plans</h3>
+                    </div>
+                    <p>Comprehensive marketing strategies designed for rapid growth and lasting success. Every plan is
+                        built on deep market research and tailored to your unique business goals.</p>
+                    <div class="marketing-features">
+                        <div class="marketing-feature">
+                            <i class="ph ph-chart-pie-slice"></i>
+                            <div>
+                                <strong>Market Research</strong>
+                                <span>Competitor & audience analysis</span>
+                            </div>
+                        </div>
+                        <div class="marketing-feature">
+                            <i class="ph ph-calendar-blank"></i>
+                            <div>
+                                <strong>Content Calendar</strong>
+                                <span>Strategic posting schedule</span>
+                            </div>
+                        </div>
+                        <div class="marketing-feature">
+                            <i class="ph ph-trend-up"></i>
+                            <div>
+                                <strong>Growth Strategy</strong>
+                                <span>Scalable acquisition funnels</span>
+                            </div>
+                        </div>
+                        <div class="marketing-feature">
+                            <i class="ph ph-chart-bar"></i>
+                            <div>
+                                <strong>Analytics & Reports</strong>
+                                <span>KPI tracking & optimization</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ PORTFOLIO ═══════════════════ -->
+    <section class="section portfolio-section" id="portfolio">
+        <div class="container">
+            <div class="section-header reveal">
+                <p class="section-tag"><i class="ph ph-images"></i> Selected Work</p>
+                <h2 class="section-title">Featured <span class="gradient-text-gold">Portfolio</span></h2>
+                <p class="section-desc">A curated selection of projects across branding, social media, and marketing.
+                </p>
+            </div>
+
+            <div class="portfolio-filters reveal">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="branding">Branding</button>
+                <button class="filter-btn" data-filter="social">Social Media</button>
+                <button class="filter-btn" data-filter="print">Print</button>
+                <button class="filter-btn" data-filter="web">Web Design</button>
+            </div>
+
+            <div class="portfolio-grid reveal" id="portfolioGrid">
+
+                <div class="portfolio-item" data-category="branding">
+                    <div class="portfolio-img"
+                        style="background: linear-gradient(135deg, #1a0533, #2d1b69); display:flex; align-items:center; justify-content:center;">
+                        <i class="ph ph-crown" style="font-size:3rem; color:#f59e0b;"></i>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h4>Luxe Brand Identity</h4>
+                        <p>Logo & Branding</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="social">
+                    <div class="portfolio-img"
+                        style="background: linear-gradient(135deg, #0f172a, #1e1b4b); display:flex; align-items:center; justify-content:center;">
+                        <i class="ph ph-instagram-logo" style="font-size:3rem; color:#ec4899;"></i>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h4>Social Media Campaign</h4>
+                        <p>Instagram & Facebook</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="print">
+                    <div class="portfolio-img"
+                        style="background: linear-gradient(135deg, #1a0a2e, #3b0764); display:flex; align-items:center; justify-content:center;">
+                        <i class="ph ph-newspaper-clipping" style="font-size:3rem; color:#a855f7;"></i>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h4>Corporate Brochure</h4>
+                        <p>Print Design</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-img"
+                        style="background: linear-gradient(135deg, #0c0a1a, #1e1b4b); display:flex; align-items:center; justify-content:center;">
+                        <i class="ph ph-browser" style="font-size:3rem; color:#8b5cf6;"></i>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h4>E-Commerce Redesign</h4>
+                        <p>Web Interface</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="branding">
+                    <div class="portfolio-img"
+                        style="background: linear-gradient(135deg, #1c1917, #292524); display:flex; align-items:center; justify-content:center;">
+                        <i class="ph ph-identification-card" style="font-size:3rem; color:#f59e0b;"></i>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h4>Premium Business Cards</h4>
+                        <p>Branding Collateral</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="social">
+                    <div class="portfolio-img"
+                        style="background: linear-gradient(135deg, #0a0a23, #1e1b4b); display:flex; align-items:center; justify-content:center;">
+                        <i class="ph ph-video-camera" style="font-size:3rem; color:#ec4899;"></i>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h4>Reel Series</h4>
+                        <p>Video Production</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="print">
+                    <div class="portfolio-img"
+                        style="background: linear-gradient(135deg, #1a0533, #4c1d95); display:flex; align-items:center; justify-content:center;">
+                        <i class="ph ph-scroll" style="font-size:3rem; color:#f59e0b;"></i>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h4>Event Roll-Up Banners</h4>
+                        <p>Print Design</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-img"
+                        style="background: linear-gradient(135deg, #0f0720, #2e1065); display:flex; align-items:center; justify-content:center;">
+                        <i class="ph ph-chart-line-up" style="font-size:3rem; color:#22c55e;"></i>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h4>Marketing Dashboard</h4>
+                        <p>Web App Design</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ STATS BANNER ═══════════════════ -->
+    <section class="stats-banner">
+        <div class="container stats-grid">
+            <div class="stat-item reveal">
+                <span class="stat-number" data-target="150"><i class="ph ph-folder-open"></i> <span
+                        class="counter">0</span>+</span>
+                <span class="stat-label">Projects Completed</span>
+            </div>
+            <div class="stat-item reveal">
+                <span class="stat-number" data-target="80"><i class="ph ph-smiley"></i> <span
+                        class="counter">0</span>+</span>
+                <span class="stat-label">Happy Clients</span>
+            </div>
+            <div class="stat-item reveal">
+                <span class="stat-number" data-target="5"><i class="ph ph-clock"></i> <span
+                        class="counter">0</span>+</span>
+                <span class="stat-label">Years Experience</span>
+            </div>
+            <div class="stat-item reveal">
+                <span class="stat-number" data-target="300"><i class="ph ph-coffee"></i> <span
+                        class="counter">0</span>+</span>
+                <span class="stat-label">Cups of Coffee</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ ABOUT ═══════════════════ -->
+    <section class="section about-section" id="about">
+        <div class="container about-grid">
+            <div class="about-image reveal">
+                <div class="about-image-frame">
+                    <div class="about-image-placeholder">
+                        <i class="ph ph-user"></i>
+                    </div>
+                    <div class="about-image-decoration"></div>
+                </div>
+            </div>
+            <div class="about-content reveal">
+                <p class="section-tag"><i class="ph ph-user-circle"></i> About Me</p>
+                <h2 class="section-title">I'm <span class="gradient-text">Amir</span></h2>
+                <p class="about-text">
+                    A passionate graphic designer and digital strategist with over 5 years of experience
+                    turning ideas into visual masterpieces. I specialize in brand identity, social media design,
+                    video production, and data-driven marketing strategies.
+                </p>
+                <p class="about-text">
+                    Every project I take on is treated as a unique story — I believe great design isn't just about
+                    aesthetics, it's about communicating the right message to the right audience at the right time.
+                </p>
+                <div class="about-skills">
+                    <span class="skill-tag">Adobe Photoshop</span>
+                    <span class="skill-tag">Adobe Illustrator</span>
+                    <span class="skill-tag">Adobe Premiere Pro</span>
+                    <span class="skill-tag">After Effects</span>
+                    <span class="skill-tag">Figma</span>
+                    <span class="skill-tag">Meta Ads</span>
+                    <span class="skill-tag">SEO</span>
+                    <span class="skill-tag">Branding</span>
+                </div>
+                <a href="#contact" class="btn btn-primary btn-lg" style="margin-top: 1.5rem;">
+                    <i class="ph ph-envelope"></i> Get In Touch
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ CONTACT ═══════════════════ -->
+    <section class="section contact-section" id="contact">
+        <div class="grid-bg"></div>
+        <div class="container">
+            <div class="section-header reveal">
+                <p class="section-tag"><i class="ph ph-chat-circle-dots"></i> Let's Work Together</p>
+                <h2 class="section-title">Get In <span class="gradient-text-gold">Touch</span></h2>
+                <p class="section-desc">Have a project in mind? Let's create something extraordinary together.</p>
+            </div>
+
+            <div class="contact-grid reveal">
+                <form class="contact-form" id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your name" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="your@email.com" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Service Interested In</label>
+                        <select id="service" name="service">
+                            <option value="">Select a service</option>
+                            <optgroup label="Design Services">
+                                <option value="logo">Logo Design</option>
+                                <option value="branding">Brand Identity</option>
+                                <option value="social-design">Social Media Design</option>
+                                <option value="web-design">Website UI Design</option>
+                                <option value="print">Print Design (Brochure, Cards, Roll-Up)</option>
+                                <option value="cv">Professional ATS CV</option>
+                                <option value="certificate">Certificate Design</option>
+                                <option value="website-seo">Integrated Website + SEO</option>
+                            </optgroup>
+                            <optgroup label="Video Services">
+                                <option value="video-editing">Video Editing</option>
+                                <option value="reels">Short Reels</option>
+                                <option value="filming">Full Day Filming</option>
+                            </optgroup>
+                            <optgroup label="Marketing Services">
+                                <option value="ads">Sponsored Ad Management</option>
+                                <option value="marketing-plan">Integrated Marketing Plan</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5"
+                            placeholder="Tell me about your project..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg btn-full">
+                        <i class="ph ph-paper-plane-tilt"></i> Send Message
+                    </button>
+                </form>
+
+                <div class="contact-info">
+                    <div class="contact-info-card">
+                        <div class="contact-icon"><i class="ph ph-envelope-simple"></i></div>
+                        <div>
+                            <strong>Email</strong>
+                            <p>hello@amirdesign.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-card">
+                        <div class="contact-icon"><i class="ph ph-phone"></i></div>
+                        <div>
+                            <strong>Phone</strong>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-card">
+                        <div class="contact-icon"><i class="ph ph-map-pin"></i></div>
+                        <div>
+                            <strong>Location</strong>
+                            <p>Available Worldwide</p>
+                        </div>
+                    </div>
+                    <div class="contact-socials">
+                        <a href="#" class="social-link" aria-label="Instagram"><i class="ph ph-instagram-logo"></i></a>
+                        <a href="#" class="social-link" aria-label="Facebook"><i class="ph ph-facebook-logo"></i></a>
+                        <a href="#" class="social-link" aria-label="Behance"><i class="ph ph-behance-logo"></i></a>
+                        <a href="#" class="social-link" aria-label="LinkedIn"><i class="ph ph-linkedin-logo"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ FOOTER ═══════════════════ -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="#" class="nav-logo">
+                    <span class="logo-icon"><i class="ph ph-diamond"></i></span>
+                    <span class="logo-text">Amir<span class="accent">.</span></span>
+                </a>
+                <p>Crafting visual stories that elevate brands and drive results.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <a href="#services">Services</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-links">
+                <h4>Services</h4>
+                <a href="#services">Graphic Design</a>
+                <a href="#video">Video & Montage</a>
+                <a href="#marketing">Digital Marketing</a>
+            </div>
+            <div class="footer-links">
+                <h4>Connect</h4>
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
+                <a href="#">Behance</a>
+                <a href="#">LinkedIn</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 Amir. All rights reserved. Designed with <i class="ph ph-heart"
+                        style="color:#ec4899;"></i></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
