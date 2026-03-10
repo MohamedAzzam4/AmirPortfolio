@@ -277,9 +277,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!currentGallery) return;
 
         const imgSrc = currentGallery.folder + (currentIndex + 1) + '.jpg';
+        console.log('Lightbox loading:', imgSrc);
         lightboxImg.classList.add('loading');
         lightboxImg.src = imgSrc;
-        lightboxImg.onload = () => lightboxImg.classList.remove('loading');
+        lightboxImg.onload = () => {
+            lightboxImg.classList.remove('loading');
+            console.log('Image loaded successfully:', imgSrc);
+        };
+        lightboxImg.onerror = () => {
+            lightboxImg.classList.remove('loading');
+            console.error('Failed to load image:', imgSrc);
+        };
         lightboxTitle.textContent = isArabic ? currentGallery.titleAr : currentGallery.title;
         lightboxCurrent.textContent = currentIndex + 1;
         lightboxTotal.textContent = currentGallery.count;
