@@ -368,111 +368,76 @@
             <div class="portfolio-grid reveal" id="portfolioGrid">
 
                 <!-- كروت العمل (هوية بصرية) -->
-                <div class="portfolio-item" data-category="branding">
+                <div class="portfolio-item" data-category="branding" data-gallery="businesscards">
                     <div class="portfolio-img">
                         <img src="images/portfolio/BusinessCards/1.jpg" alt="تصميم كارت عمل" />
                     </div>
                     <div class="portfolio-overlay">
-                        <h4>كارت عمل فاخر</h4>
+                        <h4>تصاميم كروت العمل</h4>
                         <p>مواد الهوية البصرية</p>
-                    </div>
-                </div>
-
-                <div class="portfolio-item" data-category="branding">
-                    <div class="portfolio-img">
-                        <img src="images/portfolio/BusinessCards/2.jpg" alt="تصميم كارت عمل" />
-                    </div>
-                    <div class="portfolio-overlay">
-                        <h4>كارت عمل أنيق</h4>
-                        <p>مواد الهوية البصرية</p>
-                    </div>
-                </div>
-
-                <div class="portfolio-item" data-category="branding">
-                    <div class="portfolio-img">
-                        <img src="images/portfolio/BusinessCards/3.jpg" alt="تصميم كارت عمل" />
-                    </div>
-                    <div class="portfolio-overlay">
-                        <h4>كارت عمل عصري</h4>
-                        <p>مواد الهوية البصرية</p>
-                    </div>
-                </div>
-
-                <div class="portfolio-item" data-category="branding">
-                    <div class="portfolio-img">
-                        <img src="images/portfolio/BusinessCards/4.jpg" alt="تصميم كارت عمل" />
-                    </div>
-                    <div class="portfolio-overlay">
-                        <h4>كارت عمل إبداعي</h4>
-                        <p>مواد الهوية البصرية</p>
+                        <span class="gallery-hint"><i class="ph ph-images"></i> عرض المعرض · 14 مشروع</span>
                     </div>
                 </div>
 
                 <!-- البانرات -->
-                <div class="portfolio-item" data-category="social">
+                <div class="portfolio-item" data-category="social" data-gallery="banners">
                     <div class="portfolio-img">
                         <img src="images/portfolio/Banners/1.jpg" alt="تصميم بانر" />
                     </div>
                     <div class="portfolio-overlay">
-                        <h4>بانر سوشيال ميديا</h4>
-                        <p>تصميم بانر</p>
-                    </div>
-                </div>
-
-                <div class="portfolio-item" data-category="social">
-                    <div class="portfolio-img">
-                        <img src="images/portfolio/Banners/2.jpg" alt="تصميم بانر" />
-                    </div>
-                    <div class="portfolio-overlay">
-                        <h4>بانر ترويجي</h4>
-                        <p>تصميم بانر</p>
+                        <h4>تصاميم البانرات</h4>
+                        <p>سوشيال وترويجي</p>
+                        <span class="gallery-hint"><i class="ph ph-images"></i> عرض المعرض · 2 مشروع</span>
                     </div>
                 </div>
 
                 <!-- أغلفة الكتب (طباعة) -->
-                <div class="portfolio-item" data-category="print">
+                <div class="portfolio-item" data-category="print" data-gallery="bookcovers">
                     <div class="portfolio-img">
                         <img src="images/portfolio/BookCovers/1.jpg" alt="تصميم غلاف كتاب" />
                     </div>
                     <div class="portfolio-overlay">
-                        <h4>تصميم غلاف كتاب</h4>
+                        <h4>تصاميم أغلفة الكتب</h4>
                         <p>تصميم طباعة</p>
-                    </div>
-                </div>
-
-                <div class="portfolio-item" data-category="print">
-                    <div class="portfolio-img">
-                        <img src="images/portfolio/BookCovers/2.jpg" alt="تصميم غلاف كتاب" />
-                    </div>
-                    <div class="portfolio-overlay">
-                        <h4>تصميم غلاف كتاب</h4>
-                        <p>تصميم طباعة</p>
-                    </div>
-                </div>
-
-                <div class="portfolio-item" data-category="print">
-                    <div class="portfolio-img">
-                        <img src="images/portfolio/BookCovers/3.jpg" alt="تصميم غلاف كتاب" />
-                    </div>
-                    <div class="portfolio-overlay">
-                        <h4>تصميم غلاف كتاب</h4>
-                        <p>تصميم طباعة</p>
+                        <span class="gallery-hint"><i class="ph ph-images"></i> عرض المعرض · 13 مشروع</span>
                     </div>
                 </div>
 
                 <!-- التصميم الطبي (طباعة) -->
-                <div class="portfolio-item" data-category="print">
+                <div class="portfolio-item" data-category="print" data-gallery="medical">
                     <div class="portfolio-img">
                         <img src="images/portfolio/MedicalPrescription/1.jpg" alt="تصميم طبي" />
                     </div>
                     <div class="portfolio-overlay">
                         <h4>قرطاسية طبية</h4>
                         <p>تصميم طباعة</p>
+                        <span class="gallery-hint"><i class="ph ph-images"></i> عرض المعرض · 3 مشروع</span>
                     </div>
                 </div>
 
             </div>
         </div>
+    </section>
+
+    <!-- ═══════════════════ LIGHTBOX ═══════════════════ -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose" aria-label="إغلاق المعرض">
+            <i class="ph ph-x"></i>
+        </button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="الصورة السابقة">
+            <i class="ph ph-caret-left"></i>
+        </button>
+        <div class="lightbox-img-container">
+            <img id="lightboxImg" src="" alt="صورة المعرض" />
+        </div>
+        <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="الصورة التالية">
+            <i class="ph ph-caret-right"></i>
+        </button>
+        <div class="lightbox-info">
+            <p class="lightbox-title" id="lightboxTitle"></p>
+            <p class="lightbox-counter"><span id="lightboxCurrent">1</span> / <span id="lightboxTotal">1</span></p>
+        </div>
+    </div>
     </section>
 
     <!-- ═══════════════════ STATS BANNER ═══════════════════ -->

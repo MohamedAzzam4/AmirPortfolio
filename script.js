@@ -214,4 +214,142 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // ─── LIGHTBOX GALLERY ────────────────────────────────
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxTitle = document.getElementById('lightboxTitle');
+    const lightboxCurrent = document.getElementById('lightboxCurrent');
+    const lightboxTotal = document.getElementById('lightboxTotal');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const lightboxPrev = document.getElementById('lightboxPrev');
+    const lightboxNext = document.getElementById('lightboxNext');
+
+    // Gallery data — maps gallery ID to folder path, image count, and title
+    const galleryData = {
+        businesscards: {
+            folder: 'images/portfolio/BusinessCards/',
+            count: 14,
+            title: 'Business Card Designs',
+            titleAr: 'تصاميم كروت العمل'
+        },
+        banners: {
+            folder: 'images/portfolio/Banners/',
+            count: 2,
+            title: 'Banner Designs',
+            titleAr: 'تصاميم البانرات'
+        },
+        bookcovers: {
+            folder: 'images/portfolio/BookCovers/',
+            count: 13,
+            title: 'Book Cover Designs',
+            titleAr: 'تصاميم أغلفة الكتب'
+        },
+        medical: {
+            folder: 'images/portfolio/MedicalPrescription/',
+            count: 3,
+            title: 'Medical Stationery',
+            titleAr: 'قرطاسية طبية'
+        }
+    };
+
+    let currentGallery = null;
+    let currentIndex = 0;
+    const isArabic = document.documentElement.lang === 'ar';
+
+    function openLightbox(galleryId, startIndex = 0) {
+        currentGallery = galleryData[galleryId];
+        if (!currentGallery) return;
+
+        currentIndex = startIndex;
+        updateLightboxImage();
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+        currentGallery = null;
+    }
+
+    function updateLightboxImage() {
+        if (!currentGallery) return;
+
+        const imgSrc = currentGallery.folder + (currentIndex + 1) + '.jpg';
+        lightboxImg.classList.add('loading');
+        lightboxImg.src = imgSrc;
+        lightboxImg.onload = () => lightboxImg.classList.remove('loading');
+        lightboxTitle.textContent = isArabic ? currentGallery.titleAr : currentGallery.title;
+        lightboxCurrent.textContent = currentIndex + 1;
+        lightboxTotal.textContent = currentGallery.count;
+    }
+
+    function nextImage() {
+        if (!currentGallery) return;
+        currentIndex = (currentIndex + 1) % currentGallery.count;
+        updateLightboxImage();
+    }
+
+    function prevImage() {
+        if (!currentGallery) return;
+        currentIndex = (currentIndex - 1 + currentGallery.count) % currentGallery.count;
+        updateLightboxImage();
+    }
+
+    // Click handlers
+    if (lightbox) {
+        document.querySelectorAll('.portfolio-item[data-gallery]').forEach(item => {
+            item.addEventListener('click', () => {
+                openLightbox(item.dataset.gallery);
+            });
+        });
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxPrev.addEventListener('click', prevImage);
+        lightboxNext.addEventListener('click', nextImage);
+
+        // Close on background click
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+
+            switch (e.key) {
+                case 'Escape':
+                    closeLightbox();
+                    break;
+                case 'ArrowRight':
+                    isArabic ? prevImage() : nextImage();
+                    break;
+                case 'ArrowLeft':
+                    isArabic ? nextImage() : prevImage();
+                    break;
+            }
+        });
+
+        // Touch swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        lightbox.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        lightbox.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            const diff = touchStartX - touchEndX;
+
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) {
+                    isArabic ? prevImage() : nextImage();
+                } else {
+                    isArabic ? nextImage() : prevImage();
+                }
+            }
+        }, { passive: true });
+    }
 });

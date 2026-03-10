@@ -378,113 +378,77 @@
 
             <div class="portfolio-grid reveal" id="portfolioGrid">
 
-                <!-- Business Cards (Branding) -->
-                <div class="portfolio-item" data-category="branding">
+                <!-- Business Cards (Branding) — hero thumbnail -->
+                <div class="portfolio-item" data-category="branding" data-gallery="businesscards">
                     <div class="portfolio-img">
                         <img src="images/portfolio/BusinessCards/1.jpg" alt="Business Card Design" />
                     </div>
                     <div class="portfolio-overlay">
-                        <h4>Premium Business Card</h4>
+                        <h4>Business Card Designs</h4>
                         <p>Branding Collateral</p>
+                        <span class="gallery-hint"><i class="ph ph-images"></i> View Gallery · 14 projects</span>
                     </div>
                 </div>
 
-                <div class="portfolio-item" data-category="branding">
-                    <div class="portfolio-img">
-                        <img src="images/portfolio/BusinessCards/2.jpg" alt="Business Card Design" />
-                    </div>
-                    <div class="portfolio-overlay">
-                        <h4>Elegant Business Card</h4>
-                        <p>Branding Collateral</p>
-                    </div>
-                </div>
-
-                <div class="portfolio-item" data-category="branding">
-                    <div class="portfolio-img">
-                        <img src="images/portfolio/BusinessCards/3.jpg" alt="Business Card Design" />
-                    </div>
-                    <div class="portfolio-overlay">
-                        <h4>Modern Business Card</h4>
-                        <p>Branding Collateral</p>
-                    </div>
-                </div>
-
-                <div class="portfolio-item" data-category="branding">
-                    <div class="portfolio-img">
-                        <img src="images/portfolio/BusinessCards/4.jpg" alt="Business Card Design" />
-                    </div>
-                    <div class="portfolio-overlay">
-                        <h4>Creative Business Card</h4>
-                        <p>Branding Collateral</p>
-                    </div>
-                </div>
-
-                <!-- Banners (Social) -->
-                <div class="portfolio-item" data-category="social">
+                <!-- Banners (Social) — hero thumbnail -->
+                <div class="portfolio-item" data-category="social" data-gallery="banners">
                     <div class="portfolio-img">
                         <img src="images/portfolio/Banners/1.jpg" alt="Banner Design" />
                     </div>
                     <div class="portfolio-overlay">
-                        <h4>Social Media Banner</h4>
-                        <p>Banner Design</p>
+                        <h4>Banner Designs</h4>
+                        <p>Social & Promotional</p>
+                        <span class="gallery-hint"><i class="ph ph-images"></i> View Gallery · 2 projects</span>
                     </div>
                 </div>
 
-                <div class="portfolio-item" data-category="social">
-                    <div class="portfolio-img">
-                        <img src="images/portfolio/Banners/2.jpg" alt="Banner Design" />
-                    </div>
-                    <div class="portfolio-overlay">
-                        <h4>Promotional Banner</h4>
-                        <p>Banner Design</p>
-                    </div>
-                </div>
-
-                <!-- Book Covers (Print) -->
-                <div class="portfolio-item" data-category="print">
+                <!-- Book Covers (Print) — hero thumbnail -->
+                <div class="portfolio-item" data-category="print" data-gallery="bookcovers">
                     <div class="portfolio-img">
                         <img src="images/portfolio/BookCovers/1.jpg" alt="Book Cover Design" />
                     </div>
                     <div class="portfolio-overlay">
-                        <h4>Book Cover Design</h4>
+                        <h4>Book Cover Designs</h4>
                         <p>Print Design</p>
+                        <span class="gallery-hint"><i class="ph ph-images"></i> View Gallery · 13 projects</span>
                     </div>
                 </div>
 
-                <div class="portfolio-item" data-category="print">
-                    <div class="portfolio-img">
-                        <img src="images/portfolio/BookCovers/2.jpg" alt="Book Cover Design" />
-                    </div>
-                    <div class="portfolio-overlay">
-                        <h4>Book Cover Design</h4>
-                        <p>Print Design</p>
-                    </div>
-                </div>
-
-                <div class="portfolio-item" data-category="print">
-                    <div class="portfolio-img">
-                        <img src="images/portfolio/BookCovers/3.jpg" alt="Book Cover Design" />
-                    </div>
-                    <div class="portfolio-overlay">
-                        <h4>Book Cover Design</h4>
-                        <p>Print Design</p>
-                    </div>
-                </div>
-
-                <!-- Medical Prescription (Print) -->
-                <div class="portfolio-item" data-category="print">
+                <!-- Medical Prescription (Print) — hero thumbnail -->
+                <div class="portfolio-item" data-category="print" data-gallery="medical">
                     <div class="portfolio-img">
                         <img src="images/portfolio/MedicalPrescription/1.jpg" alt="Medical Prescription Design" />
                     </div>
                     <div class="portfolio-overlay">
                         <h4>Medical Stationery</h4>
                         <p>Print Design</p>
+                        <span class="gallery-hint"><i class="ph ph-images"></i> View Gallery · 3 projects</span>
                     </div>
                 </div>
 
             </div>
         </div>
     </section>
+
+    <!-- ═══════════════════ LIGHTBOX ═══════════════════ -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Close gallery">
+            <i class="ph ph-x"></i>
+        </button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous image">
+            <i class="ph ph-caret-left"></i>
+        </button>
+        <div class="lightbox-img-container">
+            <img id="lightboxImg" src="" alt="Gallery image" />
+        </div>
+        <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next image">
+            <i class="ph ph-caret-right"></i>
+        </button>
+        <div class="lightbox-info">
+            <p class="lightbox-title" id="lightboxTitle"></p>
+            <p class="lightbox-counter"><span id="lightboxCurrent">1</span> / <span id="lightboxTotal">1</span></p>
+        </div>
+    </div>
 
     <!-- ═══════════════════ STATS BANNER ═══════════════════ -->
     <section class="stats-banner">
