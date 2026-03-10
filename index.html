@@ -52,22 +52,12 @@
     <section class="hero" id="hero">
         <!-- Topographic background -->
         <div class="hero-bg">
-            <svg class="topo-lines" viewBox="0 0 1440 800" preserveAspectRatio="none">
-                <path d="M0,400 Q360,300 720,400 T1440,400" fill="none" stroke="rgba(139,92,246,0.08)"
-                    stroke-width="1.5" />
-                <path d="M0,350 Q360,250 720,350 T1440,350" fill="none" stroke="rgba(139,92,246,0.06)"
-                    stroke-width="1" />
-                <path d="M0,450 Q360,350 720,450 T1440,450" fill="none" stroke="rgba(139,92,246,0.06)"
-                    stroke-width="1" />
-                <path d="M0,300 Q360,200 720,300 T1440,300" fill="none" stroke="rgba(139,92,246,0.04)"
-                    stroke-width="0.8" />
-                <path d="M0,500 Q360,400 720,500 T1440,500" fill="none" stroke="rgba(139,92,246,0.04)"
-                    stroke-width="0.8" />
-                <path d="M0,250 Q360,150 720,250 T1440,250" fill="none" stroke="rgba(168,85,247,0.03)"
-                    stroke-width="0.6" />
-                <path d="M0,550 Q360,450 720,550 T1440,550" fill="none" stroke="rgba(168,85,247,0.03)"
-                    stroke-width="0.6" />
-            </svg>
+            <video class="hero-video" autoplay loop muted playsinline>
+                <!-- Replace 'images/hero-bg.mp4' with the actual path to your video file -->
+                <source src="images/hero-bg.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="hero-overlay"></div>
             <div class="hero-glow hero-glow--purple"></div>
             <div class="hero-glow hero-glow--gold"></div>
         </div>
