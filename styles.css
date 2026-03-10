@@ -441,6 +441,20 @@ h6 {
     z-index: 1;
 }
 
+.hero-video-mobile {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .hero-video-desktop {
+        display: none;
+    }
+
+    .hero-video-mobile {
+        display: block;
+    }
+}
+
 .hero-overlay {
     position: absolute;
     inset: 0;
