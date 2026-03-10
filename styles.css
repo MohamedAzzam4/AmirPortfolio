@@ -446,7 +446,7 @@ h6 {
     inset: 0;
     /* Adjust this background color and opacity to control the overlay! */
     /* Example: rgba(5, 3, 10, 0.7) for a dark, slightly transparent overlay */
-    background: rgba(10, 6, 18, 0.9);
+    background: rgba(10, 6, 18, 0.8);
     z-index: 2;
 }
 
