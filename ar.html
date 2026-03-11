@@ -414,16 +414,23 @@
         </div>
     </section>
 
-    <!-- ═══════════════════ SCRollING PROJECT MODAL ═══════════════════ -->
-    <div class="project-modal" id="projectModal">
-        <div class="pm-header">
-            <h3 class="pm-title" id="pmTitle">عنوان المشروع</h3>
-            <button class="pm-close" id="pmClose" aria-label="إغلاق المشروع">
-                <i class="ph ph-x"></i>
-            </button>
+    <!-- ═══════════════════ LIGHTBOX ═══════════════════ -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose" aria-label="إغلاق المعرض">
+            <i class="ph ph-x"></i>
+        </button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="الصورة السابقة">
+            <i class="ph ph-caret-left"></i>
+        </button>
+        <div class="lightbox-img-container">
+            <img id="lightboxImg" src="" alt="صورة المعرض" />
         </div>
-        <div class="pm-body" id="pmBody">
-            <!-- Project items (image + text) will be injected here via JavaScript -->
+        <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="الصورة التالية">
+            <i class="ph ph-caret-right"></i>
+        </button>
+        <div class="lightbox-info">
+            <p class="lightbox-title" id="lightboxTitle"></p>
+            <p class="lightbox-counter"><span id="lightboxCurrent">1</span> / <span id="lightboxTotal">1</span></p>
         </div>
     </div>
     </section>

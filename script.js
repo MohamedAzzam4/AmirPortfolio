@@ -215,157 +215,149 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ─── PROJECT MODAL (Scrolling Gallery) ────────────────
-    const projectModal = document.getElementById('projectModal');
-    const pmTitle = document.getElementById('pmTitle');
-    const pmClose = document.getElementById('pmClose');
-    const pmBody = document.getElementById('pmBody');
+    // ─── LIGHTBOX GALLERY ────────────────────────────────
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxTitle = document.getElementById('lightboxTitle');
+    const lightboxCurrent = document.getElementById('lightboxCurrent');
+    const lightboxTotal = document.getElementById('lightboxTotal');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const lightboxPrev = document.getElementById('lightboxPrev');
+    const lightboxNext = document.getElementById('lightboxNext');
 
-    // Gallery data — maps gallery ID to folder path, image count, titles, and text briefs
+    // Gallery data — maps gallery ID to folder path, image count, and title
     const galleryData = {
         businesscards: {
             folder: 'images/portfolio/BusinessCards/',
             count: 14,
             title: 'Business Card Designs',
-            titleAr: 'تصاميم كروت العمل',
-            // Optional text briefs for each image (index 0 = image 1, etc.)
-            briefs: [
-                "Modern corporate identity concept focusing on bold typography and clean lines.",
-                "Minimalist design approach for a boutique real estate agency.",
-                "Vibrant colors chosen to reflect the brand's energetic and youthful vibe.",
-                "", // Leave empty if no brief is needed for a specific image
-            ],
-            briefsAr: [
-                "مفهوم الهوية المؤسسية الحديثة مع التركيز على الطباعة الجريئة والخطوط النظيفة.",
-                "نهج تصميم بسيط لوكالة عقارية متخصصة.",
-                "ألوان زاهية تم اختيارها لتعكس الحيوية والطاقة للعلامة التجارية.",
-                "", // Leave empty for no brief
-            ]
+            titleAr: 'تصاميم كروت العمل'
         },
         banners: {
             folder: 'images/portfolio/Banners/',
             count: 2,
             title: 'Banner Designs',
-            titleAr: 'تصاميم البانرات',
-            briefs: [
-                "Promotional web banner for a seasonal sale campaign.",
-                "Social media header designed to increase click-through rates."
-            ],
-            briefsAr: [
-                "بانر إعلاني لحملة تخفيضات موسمية.",
-                "غلاف لوسائل التواصل الاجتماعي مصمم لزيادة معدل النقر."
-            ]
+            titleAr: 'تصاميم البانرات'
         },
         bookcovers: {
             folder: 'images/portfolio/BookCovers/',
             count: 13,
             title: 'Book Cover Designs',
-            titleAr: 'تصاميم أغلفة الكتب',
-            briefs: [
-                "An abstract cover design for a modern tech thriller novel."
-            ],
-            briefsAr: [
-                "تصميم غلاف تجريدي لرواية إثارة تقنية حديثة."
-            ]
+            titleAr: 'تصاميم أغلفة الكتب'
         },
         medical: {
             folder: 'images/portfolio/MedicalPrescription/',
             count: 3,
             title: 'Medical Stationery',
-            titleAr: 'قرطاسية طبية',
-            briefs: [],
-            briefsAr: []
+            titleAr: 'قرطاسية طبية'
         }
     };
 
+    let currentGallery = null;
+    let currentIndex = 0;
     const isArabic = document.documentElement.lang === 'ar';
 
-    function openProjectModal(galleryId) {
-        const currentGallery = galleryData[galleryId];
+    function openLightbox(galleryId, startIndex = 0) {
+        currentGallery = galleryData[galleryId];
         if (!currentGallery) return;
 
-        // Set title
-        pmTitle.textContent = isArabic ? currentGallery.titleAr : currentGallery.title;
-
-        // Clear existing content
-        pmBody.innerHTML = '';
-
-        // Generate HTML for each design in the project
-        const briefsList = isArabic ? (currentGallery.briefsAr || []) : (currentGallery.briefs || []);
-
-        for (let i = 0; i < currentGallery.count; i++) {
-            const imgSrc = currentGallery.folder + (i + 1) + '.jpg';
-            const briefText = briefsList[i] || ''; // Fallback to empty if not defined
-
-            // Create container
-            const itemDiv = document.createElement('div');
-            itemDiv.className = 'pm-item';
-
-            // Create image element
-            const imgContainer = document.createElement('div');
-            imgContainer.className = 'pm-item-img';
-            const imgEl = document.createElement('img');
-            imgEl.src = imgSrc;
-            imgEl.alt = `${currentGallery.title} - Design ${i + 1}`;
-            imgEl.loading = "lazy";
-            imgContainer.appendChild(imgEl);
-
-            // Create text brief element
-            const textEl = document.createElement('p');
-            textEl.className = 'pm-item-text';
-            if (briefText.trim() === '') {
-                textEl.classList.add('empty');
-            } else {
-                textEl.textContent = briefText;
-            }
-
-            // Append elements (Text goes below or above depending on preference; here we put text above image)
-            itemDiv.appendChild(textEl);
-            itemDiv.appendChild(imgContainer);
-
-            pmBody.appendChild(itemDiv);
-        }
-
-        // Show modal
-        projectModal.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Prevent background scrolling
-        // Scroll modal to top
-        projectModal.scrollTop = 0;
+        currentIndex = startIndex;
+        updateLightboxImage();
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
     }
 
-    function closeProjectModal() {
-        if (projectModal) {
-            projectModal.classList.remove('active');
-            document.body.style.overflow = '';
-        }
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+        currentGallery = null;
+    }
+
+    function updateLightboxImage() {
+        if (!currentGallery) return;
+
+        const imgSrc = currentGallery.folder + (currentIndex + 1) + '.jpg';
+        console.log('Lightbox loading:', imgSrc);
+        lightboxImg.classList.add('loading');
+        lightboxImg.src = imgSrc;
+        lightboxImg.onload = () => {
+            lightboxImg.classList.remove('loading');
+            console.log('Image loaded successfully:', imgSrc);
+        };
+        lightboxImg.onerror = () => {
+            lightboxImg.classList.remove('loading');
+            console.error('Failed to load image:', imgSrc);
+        };
+        lightboxTitle.textContent = isArabic ? currentGallery.titleAr : currentGallery.title;
+        lightboxCurrent.textContent = currentIndex + 1;
+        lightboxTotal.textContent = currentGallery.count;
+    }
+
+    function nextImage() {
+        if (!currentGallery) return;
+        currentIndex = (currentIndex + 1) % currentGallery.count;
+        updateLightboxImage();
+    }
+
+    function prevImage() {
+        if (!currentGallery) return;
+        currentIndex = (currentIndex - 1 + currentGallery.count) % currentGallery.count;
+        updateLightboxImage();
     }
 
     // Click handlers
-    if (projectModal) {
-        // Open modal when clicking a gallery thumbnail
+    if (lightbox) {
         document.querySelectorAll('.portfolio-item[data-gallery]').forEach(item => {
             item.addEventListener('click', () => {
-                openProjectModal(item.dataset.gallery);
+                openLightbox(item.dataset.gallery);
             });
         });
 
-        // Close button handler
-        if (pmClose) {
-            pmClose.addEventListener('click', closeProjectModal);
-        }
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxPrev.addEventListener('click', prevImage);
+        lightboxNext.addEventListener('click', nextImage);
 
-        // Close on background click (clicking outside the internal items)
-        projectModal.addEventListener('click', (e) => {
-            if (e.target === projectModal || e.target === document.querySelector('.pm-body')) {
-                closeProjectModal();
-            }
+        // Close on background click
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
         });
 
-        // Close on Escape key
+        // Keyboard navigation
         document.addEventListener('keydown', (e) => {
-            if (projectModal.classList.contains('active') && e.key === 'Escape') {
-                closeProjectModal();
+            if (!lightbox.classList.contains('active')) return;
+
+            switch (e.key) {
+                case 'Escape':
+                    closeLightbox();
+                    break;
+                case 'ArrowRight':
+                    isArabic ? prevImage() : nextImage();
+                    break;
+                case 'ArrowLeft':
+                    isArabic ? nextImage() : prevImage();
+                    break;
             }
         });
+
+        // Touch swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        lightbox.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        lightbox.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            const diff = touchStartX - touchEndX;
+
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) {
+                    isArabic ? prevImage() : nextImage();
+                } else {
+                    isArabic ? nextImage() : prevImage();
+                }
+            }
+        }, { passive: true });
     }
 });
