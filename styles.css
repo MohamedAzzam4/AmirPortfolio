@@ -791,15 +791,43 @@ h6 {
 }
 
 .service-card h3 {
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 0.6rem;
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    color: var(--text-light);
 }
 
 .service-card p {
-    font-size: 0.9rem;
-    line-height: 1.6;
     color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.service-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    color: var(--gold);
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-decoration: none;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: var(--transition-base);
+}
+
+.service-card:hover .service-link,
+.video-card:hover .service-link {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.service-link i {
+    transition: transform 0.3s ease;
+}
+
+.service-link:hover i {
+    transform: translateX(4px);
 }
 
 .service-card--featured {
