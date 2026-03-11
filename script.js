@@ -215,149 +215,154 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ─── LIGHTBOX GALLERY ────────────────────────────────
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightboxImg');
-    const lightboxTitle = document.getElementById('lightboxTitle');
-    const lightboxCurrent = document.getElementById('lightboxCurrent');
-    const lightboxTotal = document.getElementById('lightboxTotal');
-    const lightboxClose = document.getElementById('lightboxClose');
-    const lightboxPrev = document.getElementById('lightboxPrev');
-    const lightboxNext = document.getElementById('lightboxNext');
+    // ─── MASONRY GALLERY MODAL ────────────────────────────────
+    const masonryModal = document.getElementById('masonryModal');
+    const mmTitle = document.getElementById('mmTitle');
+    const mmClose = document.getElementById('mmClose');
+    const mmBody = document.getElementById('mmBody');
 
-    // Gallery data — maps gallery ID to folder path, image count, and title
+    // Gallery data
     const galleryData = {
         businesscards: {
             folder: 'images/portfolio/BusinessCards/',
             count: 14,
             title: 'Business Card Designs',
-            titleAr: 'تصاميم كروت العمل'
+            titleAr: 'تصاميم كروت العمل',
+            briefs: [
+                "Modern corporate identity concept focusing on bold typography and clean lines.",
+                "Minimalist design approach for a boutique real estate agency.",
+                "Vibrant colors chosen to reflect the brand's energetic and youthful vibe.",
+                ""
+            ],
+            briefsAr: [
+                "مفهوم الهوية المؤسسية الحديثة مع التركيز على الطباعة الجريئة والخطوط النظيفة.",
+                "نهج تصميم بسيط لوكالة عقارية متخصصة.",
+                "ألوان زاهية تم اختيارها لتعكس الحيوية والطاقة للعلامة التجارية.",
+                ""
+            ]
         },
         banners: {
             folder: 'images/portfolio/Banners/',
             count: 2,
             title: 'Banner Designs',
-            titleAr: 'تصاميم البانرات'
+            titleAr: 'تصاميم البانرات',
+            briefs: [
+                "Promotional web banner for a seasonal sale campaign.",
+                "Social media header designed to increase click-through rates."
+            ],
+            briefsAr: [
+                "بانر إعلاني لحملة تخفيضات موسمية.",
+                "غلاف لوسائل التواصل الاجتماعي مصمم لزيادة معدل النقر."
+            ]
         },
         bookcovers: {
             folder: 'images/portfolio/BookCovers/',
             count: 13,
             title: 'Book Cover Designs',
-            titleAr: 'تصاميم أغلفة الكتب'
+            titleAr: 'تصاميم أغلفة الكتب',
+            briefs: [
+                "An abstract cover design for a modern tech thriller novel."
+            ],
+            briefsAr: [
+                "تصميم غلاف تجريدي لرواية إثارة تقنية حديثة."
+            ]
         },
         medical: {
             folder: 'images/portfolio/MedicalPrescription/',
             count: 3,
             title: 'Medical Stationery',
-            titleAr: 'قرطاسية طبية'
+            titleAr: 'قرطاسية طبية',
+            briefs: [],
+            briefsAr: []
         }
     };
 
-    let currentGallery = null;
-    let currentIndex = 0;
     const isArabic = document.documentElement.lang === 'ar';
+    let currentMasonryInstance = null;
 
-    function openLightbox(galleryId, startIndex = 0) {
-        currentGallery = galleryData[galleryId];
+    function openMasonryModal(galleryId) {
+        const currentGallery = galleryData[galleryId];
         if (!currentGallery) return;
 
-        currentIndex = startIndex;
-        updateLightboxImage();
-        lightbox.classList.add('active');
+        // Set title
+        if (mmTitle) {
+            mmTitle.textContent = isArabic ? currentGallery.titleAr : currentGallery.title;
+        }
+
+        // Prepare masonry container element
+        mmBody.innerHTML = '<div class="masonry-list"></div>';
+
+        // Prepare items data
+        const briefsList = isArabic ? (currentGallery.briefsAr || []) : (currentGallery.briefs || []);
+        const itemsData = [];
+
+        for (let i = 0; i < currentGallery.count; i++) {
+            itemsData.push({
+                id: `img-${i}`,
+                img: currentGallery.folder + (i + 1) + '.jpg',
+                text: briefsList[i] || ''
+            });
+        }
+
+        // Show modal
+        masonryModal.classList.add('active');
         document.body.style.overflow = 'hidden';
+        masonryModal.scrollTop = 0;
+
+        // Cleanup previous instance if exists
+        if (currentMasonryInstance) {
+            currentMasonryInstance.destroy();
+            currentMasonryInstance = null;
+        }
+
+        // Slight delay to allow modal display to affect DOM layout before calculating Masonry
+        setTimeout(() => {
+            if (typeof MasonryGallery !== 'undefined') {
+                currentMasonryInstance = new MasonryGallery('.masonry-list', itemsData, isArabic);
+            } else {
+                console.error("MasonryGallery class not found! Did animations.js load?");
+            }
+        }, 50);
     }
 
-    function closeLightbox() {
-        lightbox.classList.remove('active');
-        document.body.style.overflow = '';
-        currentGallery = null;
-    }
+    function closeMasonryModal() {
+        if (masonryModal) {
+            masonryModal.classList.remove('active');
+            document.body.style.overflow = '';
 
-    function updateLightboxImage() {
-        if (!currentGallery) return;
-
-        const imgSrc = currentGallery.folder + (currentIndex + 1) + '.jpg';
-        console.log('Lightbox loading:', imgSrc);
-        lightboxImg.classList.add('loading');
-        lightboxImg.src = imgSrc;
-        lightboxImg.onload = () => {
-            lightboxImg.classList.remove('loading');
-            console.log('Image loaded successfully:', imgSrc);
-        };
-        lightboxImg.onerror = () => {
-            lightboxImg.classList.remove('loading');
-            console.error('Failed to load image:', imgSrc);
-        };
-        lightboxTitle.textContent = isArabic ? currentGallery.titleAr : currentGallery.title;
-        lightboxCurrent.textContent = currentIndex + 1;
-        lightboxTotal.textContent = currentGallery.count;
-    }
-
-    function nextImage() {
-        if (!currentGallery) return;
-        currentIndex = (currentIndex + 1) % currentGallery.count;
-        updateLightboxImage();
-    }
-
-    function prevImage() {
-        if (!currentGallery) return;
-        currentIndex = (currentIndex - 1 + currentGallery.count) % currentGallery.count;
-        updateLightboxImage();
+            // Allow CSS transition to finish before destroying DOM
+            setTimeout(() => {
+                if (currentMasonryInstance) {
+                    currentMasonryInstance.destroy();
+                    currentMasonryInstance = null;
+                }
+                mmBody.innerHTML = ''; // clear completely
+            }, 300);
+        }
     }
 
     // Click handlers
-    if (lightbox) {
+    if (masonryModal) {
         document.querySelectorAll('.portfolio-item[data-gallery]').forEach(item => {
             item.addEventListener('click', () => {
-                openLightbox(item.dataset.gallery);
+                openMasonryModal(item.dataset.gallery);
             });
         });
 
-        lightboxClose.addEventListener('click', closeLightbox);
-        lightboxPrev.addEventListener('click', prevImage);
-        lightboxNext.addEventListener('click', nextImage);
+        if (mmClose) {
+            mmClose.addEventListener('click', closeMasonryModal);
+        }
 
-        // Close on background click
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) closeLightbox();
+        masonryModal.addEventListener('click', (e) => {
+            if (e.target === masonryModal || e.target === mmBody) {
+                closeMasonryModal();
+            }
         });
 
-        // Keyboard navigation
         document.addEventListener('keydown', (e) => {
-            if (!lightbox.classList.contains('active')) return;
-
-            switch (e.key) {
-                case 'Escape':
-                    closeLightbox();
-                    break;
-                case 'ArrowRight':
-                    isArabic ? prevImage() : nextImage();
-                    break;
-                case 'ArrowLeft':
-                    isArabic ? nextImage() : prevImage();
-                    break;
+            if (masonryModal.classList.contains('active') && e.key === 'Escape') {
+                closeMasonryModal();
             }
         });
-
-        // Touch swipe support
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        lightbox.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
-
-        lightbox.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            const diff = touchStartX - touchEndX;
-
-            if (Math.abs(diff) > 50) {
-                if (diff > 0) {
-                    isArabic ? prevImage() : nextImage();
-                } else {
-                    isArabic ? nextImage() : prevImage();
-                }
-            }
-        }, { passive: true });
     }
 });

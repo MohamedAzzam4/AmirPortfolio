@@ -414,23 +414,16 @@
         </div>
     </section>
 
-    <!-- ═══════════════════ LIGHTBOX ═══════════════════ -->
-    <div class="lightbox" id="lightbox">
-        <button class="lightbox-close" id="lightboxClose" aria-label="إغلاق المعرض">
-            <i class="ph ph-x"></i>
-        </button>
-        <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="الصورة السابقة">
-            <i class="ph ph-caret-left"></i>
-        </button>
-        <div class="lightbox-img-container">
-            <img id="lightboxImg" src="" alt="صورة المعرض" />
+    <!-- ═══════════════════ MASONRY GALLERY MODAL ═══════════════════ -->
+    <div class="masonry-modal" id="masonryModal">
+        <div class="mm-header">
+            <h3 class="mm-title" id="mmTitle">عنوان المشروع</h3>
+            <button class="mm-close" id="mmClose" aria-label="إغلاق المشروع">
+                <i class="ph ph-x"></i>
+            </button>
         </div>
-        <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="الصورة التالية">
-            <i class="ph ph-caret-right"></i>
-        </button>
-        <div class="lightbox-info">
-            <p class="lightbox-title" id="lightboxTitle"></p>
-            <p class="lightbox-counter"><span id="lightboxCurrent">1</span> / <span id="lightboxTotal">1</span></p>
+        <div class="mm-body" id="mmBody">
+            <!-- GSAP Masonry grid injected here via JavaScript -->
         </div>
     </div>
     </section>
@@ -632,6 +625,8 @@
         </div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="animations.js"></script>
     <script src="script.js"></script>
 </body>
 
