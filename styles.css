@@ -1397,6 +1397,29 @@ h6 {
     color: #ef4444;
 }
 
+/* ═══════════════════════════════════════════════════════
+   VIDEO EMBED MODAL
+   ═══════════════════════════════════════════════════════ */
+/* The Video Modal shares the `.masonry-modal` backbone, but customizes its content grid. */
+.vm-content {
+    width: 100%;
+    padding: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* For Facebook/Insta reels specifically */
+.vm-content iframe {
+    border: none;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    background: #000;
+}
+
 /* Portfolio hide/show animation */
 .portfolio-item.hidden {
     display: none;

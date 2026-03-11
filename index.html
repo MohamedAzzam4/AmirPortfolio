@@ -376,7 +376,8 @@
                 <!-- Business Cards (Branding) — hero thumbnail -->
                 <div class="portfolio-item" data-category="branding" data-gallery="businesscards">
                     <div class="portfolio-img">
-                        <img src="images/portfolio/BusinessCards/1.jpg" alt="Business Card Design" />
+                        <img src="images/portfolio/BusinessCards/main.jpg" onerror="fallbackThumbnail(this)"
+                            alt="Business Card Design" />
                     </div>
                     <div class="portfolio-overlay">
                         <h4>Business Card Designs</h4>
@@ -388,7 +389,8 @@
                 <!-- Banners (Social) — hero thumbnail -->
                 <div class="portfolio-item" data-category="social" data-gallery="banners">
                     <div class="portfolio-img">
-                        <img src="images/portfolio/Banners/1.jpg" alt="Banner Design" />
+                        <img src="images/portfolio/Banners/main.jpg" onerror="fallbackThumbnail(this)"
+                            alt="Banner Design" />
                     </div>
                     <div class="portfolio-overlay">
                         <h4>Banner Designs</h4>
@@ -400,7 +402,8 @@
                 <!-- Book Covers (Print) — hero thumbnail -->
                 <div class="portfolio-item" data-category="print" data-gallery="bookcovers">
                     <div class="portfolio-img">
-                        <img src="images/portfolio/BookCovers/1.jpg" alt="Book Cover Design" />
+                        <img src="images/portfolio/BookCovers/main.jpg" onerror="fallbackThumbnail(this)"
+                            alt="Book Cover Design" />
                     </div>
                     <div class="portfolio-overlay">
                         <h4>Book Cover Designs</h4>
@@ -412,12 +415,52 @@
                 <!-- Medical Prescription (Print) — hero thumbnail -->
                 <div class="portfolio-item" data-category="print" data-gallery="medical">
                     <div class="portfolio-img">
-                        <img src="images/portfolio/MedicalPrescription/1.jpg" alt="Medical Prescription Design" />
+                        <img src="images/portfolio/MedicalPrescription/main.jpg" onerror="fallbackThumbnail(this)"
+                            alt="Medical Prescription Design" />
                     </div>
                     <div class="portfolio-overlay">
                         <h4>Medical Stationery</h4>
                         <p>Print Design</p>
                         <span class="gallery-hint"><i class="ph ph-images"></i> View Gallery · 3 projects</span>
+                    </div>
+                </div>
+
+                <!-- Brochures (Print) — hero thumbnail -->
+                <div class="portfolio-item" data-category="print" data-gallery="brochures">
+                    <div class="portfolio-img">
+                        <img src="images/portfolio/Brochures/main.jpg" onerror="fallbackThumbnail(this)"
+                            alt="Brochure Design" />
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h4>Brochure Designs</h4>
+                        <p>Print Design</p>
+                        <span class="gallery-hint"><i class="ph ph-images"></i> View Gallery</span>
+                    </div>
+                </div>
+
+                <!-- Social Media (Social) — hero thumbnail -->
+                <div class="portfolio-item" data-category="social" data-gallery="socialmedia">
+                    <div class="portfolio-img">
+                        <img src="images/portfolio/SocialMedia/main.jpg" onerror="fallbackThumbnail(this)"
+                            alt="Social Media Design" />
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h4>Social Media Posts</h4>
+                        <p>Social & Promotional</p>
+                        <span class="gallery-hint"><i class="ph ph-images"></i> View Gallery</span>
+                    </div>
+                </div>
+
+                <!-- Reels (Video Embed) — hero thumbnail -->
+                <div class="portfolio-item" data-category="social" data-video="reels">
+                    <div class="portfolio-img">
+                        <img src="images/portfolio/Reels/main.png" onerror="fallbackThumbnail(this)"
+                            alt="Short Form Videos" />
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h4>Short-Form Reels</h4>
+                        <p>Video Editing</p>
+                        <span class="gallery-hint"><i class="ph ph-play-circle"></i> Watch Videos</span>
                     </div>
                 </div>
 
@@ -444,6 +487,19 @@
             <i class="ph ph-x"></i>
         </button>
         <img id="pvImg" src="" alt="Full size photo" />
+    </div>
+
+    <!-- ═══════════════════ VIDEO EMBED MODAL ═══════════════════ -->
+    <div class="masonry-modal video-modal" id="videoModal">
+        <div class="mm-header">
+            <h3 class="mm-title" id="vmTitle">Short-Form Reels</h3>
+            <button class="mm-close" id="vmClose" aria-label="Close video">
+                <i class="ph ph-x"></i>
+            </button>
+        </div>
+        <div class="mm-body vm-content" id="vmContent">
+            <!-- Iframes injected here via JS -->
+        </div>
     </div>
 
     <!-- ═══════════════════ STATS BANNER ═══════════════════ -->

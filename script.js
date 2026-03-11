@@ -2,6 +2,23 @@
    AMIR PORTFOLIO — INTERACTIVITY
    ═══════════════════════════════════════════════════════ */
 
+// ─── THUMBNAIL FALLBACK LOGIC ────────────────
+window.fallbackThumbnail = function (imgElement) {
+    if (!imgElement.dataset.triedFallback) {
+        // First fallback: Try 'Main.jpg'
+        imgElement.dataset.triedFallback = '1';
+        imgElement.src = imgElement.src.replace('main.jpg', 'Main.jpg');
+    } else if (imgElement.dataset.triedFallback === '1') {
+        // Second fallback: Try 'mian.jpg'
+        imgElement.dataset.triedFallback = '2';
+        imgElement.src = imgElement.src.replace('Main.jpg', 'mian.jpg');
+    } else if (imgElement.dataset.triedFallback === '2') {
+        // Final fallback: Try '1.jpg' if none of the above exist
+        imgElement.dataset.triedFallback = '3';
+        imgElement.src = imgElement.src.replace('mian.jpg', '1.jpg');
+    }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     // ─── NAVBAR SCROLL EFFECT ─────────────────────────
     const navbar = document.getElementById('navbar');
@@ -226,6 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
         businesscards: {
             folder: 'images/portfolio/BusinessCards/',
             count: 14,
+            files: ['main.jpg', '1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '7.jpg', '8.jpg', '9.jpg', '10.jpg', '11.jpg', '12.jpg', '13.jpg', '14.jpg'],
             title: 'Business Card Designs',
             titleAr: 'تصاميم كروت العمل',
             briefs: [
@@ -244,6 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
         banners: {
             folder: 'images/portfolio/Banners/',
             count: 2,
+            files: ['main.jpg', '2.jpg'],
             title: 'Banner Designs',
             titleAr: 'تصاميم البانرات',
             briefs: [
@@ -258,6 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
         bookcovers: {
             folder: 'images/portfolio/BookCovers/',
             count: 13,
+            files: ['main.jpg', '1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg', '10.jpg', '11.jpg', '13.jpg'],
             title: 'Book Cover Designs',
             titleAr: 'تصاميم أغلفة الكتب',
             briefs: [
@@ -270,8 +290,27 @@ document.addEventListener('DOMContentLoaded', () => {
         medical: {
             folder: 'images/portfolio/MedicalPrescription/',
             count: 3,
+            files: ['main.jpg', '2.jpg', '3.jpg'],
             title: 'Medical Stationery',
             titleAr: 'قرطاسية طبية',
+            briefs: [],
+            briefsAr: []
+        },
+        brochures: {
+            folder: 'images/portfolio/Brochures/',
+            count: 5,
+            files: ['main.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg'],
+            title: 'Brochure Designs',
+            titleAr: 'تصاميم البروشورات',
+            briefs: [],
+            briefsAr: []
+        },
+        socialmedia: {
+            folder: 'images/portfolio/SocialMedia/',
+            count: 6,
+            files: ['main.jpg', '136516126.jpg', '1365326236234.jpg', '15325151513-31.jpg', '15325151513-316.jpg', '15325151513-3169.jpg', '2345234523451.jpg', '2351235135236.jpg', '2356216126.jpg', '251251616.jpg', '262626.jpg', '3246346346436.jpg', '345346534634634.jpg', '3561616.jpg', '3612616.jpg'],
+            title: 'Social Media Posts',
+            titleAr: 'منشورات سوشيال ميديا',
             briefs: [],
             briefsAr: []
         }
@@ -280,7 +319,41 @@ document.addEventListener('DOMContentLoaded', () => {
     const isArabic = document.documentElement.lang === 'ar';
     let currentMasonryInstance = null;
 
-    function openMasonryModal(galleryId) {
+    async function getPortfolioImages(galleryObj) {
+        try {
+            const response = await fetch(galleryObj.folder);
+            if (response.ok) {
+                const htmlText = await response.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(htmlText, 'text/html');
+                const links = Array.from(doc.querySelectorAll('a'));
+                let images = links
+                    .map(a => a.getAttribute('href'))
+                    .filter(href => href && href.match(/\.(jpe?g|png|webp|gif)$/i));
+
+                // Strip paths, keeping just filenames
+                images = images.map(img => img.split('/').pop());
+
+                if (images.length > 0) {
+                    images = [...new Set(images)];
+                    // Sort so that main.jpg is always the very first item
+                    images.sort((a, b) => {
+                        const aIsMain = a.toLowerCase().startsWith('main');
+                        const bIsMain = b.toLowerCase().startsWith('main');
+                        if (aIsMain && !bIsMain) return -1;
+                        if (!aIsMain && bIsMain) return 1;
+                        return a.localeCompare(b, undefined, { numeric: true });
+                    });
+                    return images;
+                }
+            }
+        } catch (e) {
+            console.warn('Auto-fetch failed. Falling back to predefined files list explicitly.', e);
+        }
+        return galleryObj.files || Array.from({ length: galleryObj.count }, (_, i) => `${i + 1}.jpg`);
+    }
+
+    async function openMasonryModal(galleryId) {
         const currentGallery = galleryData[galleryId];
         if (!currentGallery) return;
 
@@ -289,6 +362,15 @@ document.addEventListener('DOMContentLoaded', () => {
             mmTitle.textContent = isArabic ? currentGallery.titleAr : currentGallery.title;
         }
 
+        // Show modal early and add a loading indicator
+        masonryModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        masonryModal.scrollTop = 0;
+        mmBody.innerHTML = '<div style="opacity:0.6; text-align:center; padding: 4rem; width:100%;">Loading portfolio images...</div>';
+
+        // Fetch the actual physical images in the folder dynamically (with reliable fallback)
+        const imageList = await getPortfolioImages(currentGallery);
+
         // Prepare masonry container element
         mmBody.innerHTML = '<div class="masonry-list"></div>';
 
@@ -296,18 +378,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const briefsList = isArabic ? (currentGallery.briefsAr || []) : (currentGallery.briefs || []);
         const itemsData = [];
 
-        for (let i = 0; i < currentGallery.count; i++) {
+        for (let i = 0; i < imageList.length; i++) {
             itemsData.push({
                 id: `img-${i}`,
-                img: currentGallery.folder + (i + 1) + '.jpg',
+                img: currentGallery.folder + imageList[i],
                 text: briefsList[i] || ''
             });
         }
-
-        // Show modal
-        masonryModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-        masonryModal.scrollTop = 0;
 
         // Cleanup previous instance if exists
         if (currentMasonryInstance) {
@@ -394,6 +471,63 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('keydown', (e) => {
             if (photoViewer.classList.contains('active') && e.key === 'Escape') {
                 closePhotoViewer();
+            }
+        });
+    }
+    // ─── VIDEO EMBED MODAL ────────────────────────────────
+    const videoModal = document.getElementById('videoModal');
+    const vmContent = document.getElementById('vmContent');
+    const vmClose = document.getElementById('vmClose');
+
+    const videoData = {
+        reels: [
+            `<iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F791451850097917%2F&show_text=false&width=267&t=0" width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>`,
+            `<iframe src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2FKawaderNursingSchool%2Fvideos%2F625695423914535%2F&show_text=false&width=560&t=0" width="560" height="314" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>`,
+            `<iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1457639509147011%2F&show_text=false&width=267&t=0" width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>`,
+            `<iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2FDrkyrillosOncoSurg%2Fvideos%2F1262496435681653%2F&show_text=false&width=267&t=0" width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>`,
+            `<iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1380330543531381%2F&show_text=false&width=267&t=0" width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>`,
+            `<iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1751258952492288%2F&show_text=false&width=267&t=0" width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>`,
+            `<iframe src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2FNeuroman.Mohamed.E.Fayed%2Fvideos%2F1055109063295715%2F&show_text=false&width=560&t=0" width="560" height="314" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>`,
+            `<iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1620104529162239%2F&show_text=false&width=267&t=0" width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>`,
+            `<iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1295255311722643%2F&show_text=false&width=267&t=0" width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>`,
+            `<iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F2897565387300236%2F&show_text=false&width=267&t=0" width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>`
+        ]
+    };
+
+    function openVideoModal(videoId) {
+        if (!videoModal || !vmContent) return;
+        const embeds = videoData[videoId];
+        if (!embeds) return;
+
+        vmContent.innerHTML = embeds.join('');
+        videoModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeVideoModal() {
+        if (videoModal) {
+            videoModal.classList.remove('active');
+            document.body.style.overflow = '';
+            setTimeout(() => {
+                if (vmContent) vmContent.innerHTML = ''; // Stop video playback
+            }, 300);
+        }
+    }
+
+    if (videoModal) {
+        document.querySelectorAll('.portfolio-item[data-video]').forEach(item => {
+            item.addEventListener('click', () => {
+                openVideoModal(item.dataset.video);
+            });
+        });
+
+        if (vmClose) vmClose.addEventListener('click', closeVideoModal);
+        videoModal.addEventListener('click', (e) => {
+            if (e.target === videoModal || e.target === vmContent) closeVideoModal();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (videoModal.classList.contains('active') && e.key === 'Escape') {
+                closeVideoModal();
             }
         });
     }
