@@ -365,4 +365,36 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // ─── PHOTO VIEWER MODAL ────────────────────────────────
+    const photoViewer = document.getElementById('photoViewer');
+    const pvImg = document.getElementById('pvImg');
+    const pvClose = document.getElementById('pvClose');
+
+    window.openPhotoViewer = function (imgSrc) {
+        if (!photoViewer || !pvImg) return;
+        pvImg.src = imgSrc;
+        photoViewer.classList.add('active');
+    };
+
+    function closePhotoViewer() {
+        if (photoViewer) {
+            photoViewer.classList.remove('active');
+            setTimeout(() => {
+                if (pvImg) pvImg.src = '';
+            }, 300);
+        }
+    }
+
+    if (photoViewer) {
+        if (pvClose) pvClose.addEventListener('click', closePhotoViewer);
+        photoViewer.addEventListener('click', (e) => {
+            if (e.target === photoViewer) closePhotoViewer();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (photoViewer.classList.contains('active') && e.key === 'Escape') {
+                closePhotoViewer();
+            }
+        });
+    }
 });

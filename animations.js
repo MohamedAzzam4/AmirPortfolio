@@ -29,10 +29,10 @@ class MasonryGallery {
 
     // Determine column count based on width
     getColumns(width) {
-        if (width >= 1500) return 5;
-        if (width >= 1000) return 4;
-        if (width >= 600) return 3;
-        if (width >= 400) return 2;
+        if (width >= 1500) return 4;
+        if (width >= 1000) return 3;
+        if (width >= 600) return 2;
+        if (width >= 400) return 1;
         return 1;
     }
 
@@ -96,6 +96,13 @@ class MasonryGallery {
             wrapper.addEventListener('mouseenter', () => this.handleMouseEnter(wrapper));
             wrapper.addEventListener('mouseleave', () => this.handleMouseLeave(wrapper));
 
+            // Click event to view photo in lightbox
+            wrapper.addEventListener('click', () => {
+                if (window.openPhotoViewer) {
+                    window.openPhotoViewer(item.img);
+                }
+            });
+
             return wrapper;
         });
 
@@ -125,12 +132,8 @@ class MasonryGallery {
         this.grid = this.itemsData.map((data, index) => {
             const el = this.itemElements[index];
 
-            // Calculate a synthetic height for the image to create a masonry cascading effect
-            // We use a pseudo-random multiplier based on the index to give consistent but varying heights
-            let varietyFactor = 1.0 + ((index % 3) * 0.2); // 1.0, 1.2, 1.4
-            if (index % 5 === 0) varietyFactor = 1.6;
-
-            const imgHeight = columnWidth * varietyFactor;
+            // Preserve the original 4:3 image dimensions
+            const imgHeight = columnWidth * 0.75;
 
             // Temporarily set width to let text naturally flow and measure true height
             el.style.width = `${columnWidth}px`;
