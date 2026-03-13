@@ -94,20 +94,6 @@ body {
     left: 1rem;
 }
 
-/* Video features */
-.video-features li {
-    flex-direction: row-reverse;
-}
-
-/* Marketing features */
-.marketing-card-header {
-    flex-direction: row-reverse;
-}
-
-.marketing-feature {
-    flex-direction: row-reverse;
-    text-align: right;
-}
 
 /* Portfolio overlay */
 .portfolio-overlay {
@@ -161,19 +147,46 @@ body {
     padding-right: 1rem;
 }
 
-/* Footer */
+/* ── Footer (توسيط الفوتر بالكامل) ── */
 .footer-grid {
     direction: rtl;
+    text-align: center;
 }
 
+/* توسيط اللوجو */
+.footer-brand .nav-logo {
+    justify-content: center;
+}
+
+/* توسيط النص تحت اللوجو */
+.footer-brand p {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* توسيط الروابط وتعديل حركتها عند المرور عليها */
 .footer-links {
-    text-align: right;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .footer-links a:hover {
     padding-left: 0;
-    padding-right: 4px;
+    padding-right: 0;
+    color: var(--purple-light);
+    transform: translateY(-2px);
 }
+
+/* تعديل عرض الأعمدة ليصبح متناسقاً مع التوسيط */
+@media (min-width: 769px) {
+    .footer-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+
 
 /* ── Mobile nav — RTL adjustments ── */
 @media (max-width: 767px) {
@@ -198,5 +211,26 @@ body {
 
     .nav-logo {
         order: 1;
+    }
+}
+
+/* تنسيقات الموبايل - توسيط كروت الخدمات */
+@media (max-width: 768px) {
+
+    /* توسيط النص داخل الكارد */
+    .service-card {
+        text-align: center;
+    }
+
+    /* توسيط الأيقونة في المنتصف */
+    .service-card .service-icon {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* توسيط رابط "عرض الأعمال" والسهم الخاص به */
+    .service-card .service-link {
+        justify-content: center;
+        width: 100%;
     }
 }
