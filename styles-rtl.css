@@ -122,13 +122,10 @@ body {
 
 /* Contact info */
 .contact-info-card {
-    flex-direction: row-reverse;
     text-align: right;
 }
 
-.contact-socials {
-    flex-direction: row-reverse;
-}
+
 
 /* Form */
 .contact-form {
