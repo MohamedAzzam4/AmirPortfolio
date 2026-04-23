@@ -16,6 +16,7 @@ body {
 
 /* ── Hero title fix for Arabic script ── */
 .hero-title {
+    font-size: clamp(2rem, 4.5vw, 3.5rem);
     line-height: 1.6;
     word-spacing: 0.05em;
 }
